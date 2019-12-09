@@ -1,0 +1,95 @@
+
+ void Quicksort(int A[], int low, int high) {
+	int pivot;
+	
+	// termination condition
+	if (high > low) {
+		pivot = Partition(A, low, high);
+		Quicksort(A, low, pivot - 1);
+		Quicksort(A, pivot + 1, high);
+	} }
+
+int Partition(int A, int low, int high) {
+	int left, right, pivot_item = A[low];
+	left = low;
+	right = high;
+	while (left < right) {
+		// Move left while item < pivot)
+		while (A[left] <= pivot_item)
+			left++;
+		// Move right while item > pivot
+		while (A[right] > pivot_item)
+			right--;
+		if (left < right}
+			swap(A, left, right);
+	}
+	// right is final position of pivot
+	A[low] = A[right];
+	A[right] > = pivot_item;
+	return right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+}
+
+int createKey (char *color){
+    int key= 0;
+
+    if (strcmp(color,"black")==0){
+        key= 0x000000;
+    }
+    else if (strcmp(color,"blue")==0){
+        key= 0x0000AA;
+    }
+    else if (strcmp(color,"green")==0){
+        key= 0x00AA00;
+    }
+    else{
+        key=-1;
+    }
+
+    return key; }
+
+int main()
+{
+    int colorKey=-1;        //colorKey is a the key of the desired color.
+    int *colorValue;        //colorValue is the value of the desired color.
+    char colorName[25];     
+
+    qsort(values,16,sizeof(int),cmpfunc);   //The qsort() function sorts the 16 values inside array 'values'.
+
+    while(1){             
+        printf("\nPlease enter the CGA color name: ");
+        fgets(colorName,sizeof(colorName),stdin);   //stores the name of the color in colorName.
+        colorName[strlen(colorName)-1]='\0';        //removes trailing newline.
+
+        if(strcmp(colorName,"\0")==0){              //if user entered only a newline then exit the program.
+            exit(-1);
+        }
+
+        colorKey= createKey(colorName);             
+
+        if (colorKey==-1){
+            printf("\nColor not found\n");         
+        }
+
+        else {
+            colorValue= (int*) bsearch(&colorKey,values,16,sizeof(int),cmpfunc);
+            printf("\n24-bit CGA color value (Hex): #%06X\n",*colorValue);       
+        } }
+    return 0; }
